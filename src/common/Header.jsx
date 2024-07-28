@@ -37,7 +37,10 @@ export class Header extends Component {
 
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/profile"
+                element={<Profile user={this.state.user} />}
+              />
               <Route path="/login" element={<Login />} />
               <Route path="/forget" element={<Forget />} />
               <Route path="/register" element={<Register />} />
