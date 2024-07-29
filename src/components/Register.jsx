@@ -1,7 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Register extends Component {
+  state = {
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+    message: "",
+  };
+  //Register form submit
+  formSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation,
+    };
+    axios
+      .post("/register", data)
+      .then((response) => {
+        console.log(response);
+
+        this.props.setUser(response.data.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   render() {
     return (
       <div>
@@ -10,7 +38,7 @@ class Register extends Component {
         <div className="row">
           <div className="jumbotron col-lg-4 offset-lg-4">
             <h3 className="text-center">Register Account</h3>
-            <form>
+            <form onSubmit={this.formSubmit}>
               <div className="form-group">
                 <label for="exampleInputEmail1">User Name</label>
                 <input
@@ -18,6 +46,11 @@ class Register extends Component {
                   className="form-control"
                   aria-describedby="emailHelp"
                   placeholder="Enter User Name"
+                  name="name"
+                  required
+                  onChange={(e) => {
+                    this.setState({ name: e.target.value });
+                  }}
                 />
               </div>
               <div className="form-group">
@@ -27,6 +60,11 @@ class Register extends Component {
                   className="form-control"
                   aria-describedby="emailHelp"
                   placeholder="Enter email"
+                  name="email"
+                  required
+                  onChange={(e) => {
+                    this.setState({ email: e.target.value });
+                  }}
                 />
               </div>
               <div className="form-group">
@@ -35,6 +73,11 @@ class Register extends Component {
                   type="password"
                   className="form-control"
                   placeholder="Password"
+                  name="password"
+                  required
+                  onChange={(e) => {
+                    this.setState({ password: e.target.value });
+                  }}
                 />
               </div>
               <div className="form-group">
@@ -43,6 +86,11 @@ class Register extends Component {
                   type="password"
                   className="form-control"
                   placeholder="Password"
+                  name="password_confirmation"
+                  required
+                  onChange={(e) => {
+                    this.setState({ password_confirmation: e.target.value });
+                  }}
                 />
               </div>
 
