@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 
 class Register extends Component {
@@ -23,7 +23,10 @@ class Register extends Component {
       .post("/register", data)
       .then((response) => {
         console.log(response);
-
+        localStorage.setItem("token", response.data.token);
+        this.setState({
+          loggedIn: true,
+        });
         this.props.setUser(response.data.user);
       })
       .catch((error) => {
@@ -31,6 +34,11 @@ class Register extends Component {
       });
   };
   render() {
+    //After Login Redirect to profile
+    if (this.state.loggedIn) {
+      //   return redirect("/profile");
+      return <Navigate to="/profile" />;
+    }
     return (
       <div>
         <br />

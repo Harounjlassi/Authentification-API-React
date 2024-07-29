@@ -41,9 +41,19 @@ export class Header extends Component {
                 path="/profile"
                 element={<Profile user={this.state.user} />}
               />
-              <Route path="/login" element={<Login />} />
+              <Route
+                path="/login"
+                element={
+                  <Login user={this.state.user} setUser={this.setUser} />
+                }
+              />
               <Route path="/forget" element={<Forget />} />
-              <Route path="/register" element={<Register />} />
+              <Route
+                path="/register"
+                element={
+                  <Register user={this.state.user} setUser={this.setUser} />
+                }
+              />
             </Routes>
           </div>
         </Router>
