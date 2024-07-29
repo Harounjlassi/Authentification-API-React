@@ -48,7 +48,7 @@ export class Header extends Component {
                 }
               />
               <Route path="/forget" element={<Forget />} />
-              <Route path="/reset/:id" element={<Reset />} />
+              <Route path="/reset/:token" element={<Reset />} />
               <Route
                 path="/register"
                 element={

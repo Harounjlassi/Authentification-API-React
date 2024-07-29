@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 class Profile extends Component {
   render() {
@@ -8,6 +8,9 @@ class Profile extends Component {
     if (this.props.user) {
       name = this.props.user.name;
       email = this.props.user.email;
+    }
+    if (!localStorage.getItem("token")) {
+      return <Navigate to="/login" />;
     }
     return (
       <div>

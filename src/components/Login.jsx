@@ -46,6 +46,9 @@ class Login extends Component {
         </div>
       );
     }
+    if (localStorage.getItem("token")) {
+      return <Navigate to="/profile" />;
+    }
     return (
       <div>
         <br />
