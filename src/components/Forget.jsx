@@ -5,7 +5,6 @@ import axios from "axios";
 class Forget extends Component {
   state = {
     email: "",
-
     message: "",
   };
   //Register form submit
@@ -16,7 +15,9 @@ class Forget extends Component {
     };
     axios
       .post("/forgetPassword", data)
-      .then((response) => {})
+      .then((response) => {
+        console.log(response);
+      })
       .catch((error) => {
         console.log(error);
       });
