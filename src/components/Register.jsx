@@ -22,7 +22,6 @@ class Register extends Component {
     axios
       .post("/register", data)
       .then((response) => {
-        console.log(response);
         localStorage.setItem("token", response.data.token);
         this.setState({
           loggedIn: true,

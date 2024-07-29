@@ -18,7 +18,6 @@ export class Header extends Component {
     axios
       .get("/user")
       .then((response) => {
-        console.log(response);
         this.setUser(response.data);
       })
       .catch((error) => {
