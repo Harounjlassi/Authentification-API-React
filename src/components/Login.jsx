@@ -25,7 +25,7 @@ class Login extends Component {
         this.props.setUser(response.data.user);
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({ message: error.response.data.message });
       });
   };
 
@@ -34,6 +34,17 @@ class Login extends Component {
     if (this.state.loggedIn) {
       //   return redirect("/profile");
       return <Navigate to="/profile" />;
+    }
+    //shiw error message
+    let error = "";
+    if (this.state.message) {
+      error = (
+        <div>
+          <div className="alert alert-danger" role="alert">
+            {this.state.message}
+          </div>
+        </div>
+      );
     }
     return (
       <div>

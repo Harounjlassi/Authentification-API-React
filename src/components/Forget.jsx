@@ -16,13 +16,25 @@ class Forget extends Component {
     axios
       .post("/forgetPassword", data)
       .then((response) => {
-        console.log(response);
+        this.setState({ message: response.data.message });
+        document.getElementById("forgetFrom").reset();
       })
       .catch((error) => {
-        console.log(error);
+        this.setState({ message: error.response.data.message });
       });
   };
   render() {
+    //shiw error message
+    let error = "";
+    if (this.state.message) {
+      error = (
+        <div>
+          <div className="alert alert-danger" role="alert">
+            {this.state.message}
+          </div>
+        </div>
+      );
+    }
     return (
       <div>
         <br />
@@ -30,7 +42,8 @@ class Forget extends Component {
         <div className="row">
           <div className="jumbotron col-lg-4 offset-lg-4">
             <h3 className="text-center">Forget Account</h3>
-            <form onSubmit={this.formSubmit}>
+            <form onSubmit={this.formSubmit} id="forgetFrom">
+              {error}
               <div className="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input
